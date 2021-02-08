@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+    // EMP 테이블 전체 출력
+    Class.forName("oracle.jdbc.driver.OracleDriver");
+
+    // 1. driver 연결
+
+    // 2. 계정연결
+
+    // 3. query 준비
+
+    // 4. query 실행 및 리턴
+
+    // 5. db 종료
+
+%>
+</body>
+</html>
