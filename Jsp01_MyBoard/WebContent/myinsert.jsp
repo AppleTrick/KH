@@ -9,7 +9,6 @@
 <body>
 
 	<h1>글쓰기</h1>
-	
 	<!-- 글 작성할때 post 인 이유 : queryString 이 허용범위 이상 길어지면 request불가 -->
 	<form action="myinsert_res.jsp" method="post">
 		<table border="1">

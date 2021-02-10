@@ -61,7 +61,7 @@ public class MyBoardDao {
 		
 		Connection con = getConnection();
 		
-		String sql = "SELECT MYNO, MYNAME, MYTITLE, MYCONTENT, MYDATE "+
+		String sql = "SELECT MYNO, MYNAME, MYTITLE, MYCONTENT, MYDATE"+
 					" FROM MYBOARD " +
 					" WHERE MYNO = ? ";
 				
@@ -78,13 +78,16 @@ public class MyBoardDao {
 			rs = pstm.executeQuery();
 			System.out.println("4. query 실행 및 리턴");
 			
+			//while 없앨 경우 rs.next() 하나를 무조건 해줘야된다.
 			while(rs.next()) {
 				dto.setMyno(rs.getInt("MYNO"));
 				dto.setMyname(rs.getString(2));
 				dto.setMytitle(rs.getString("MYTITLE"));
 				dto.setMycontent(rs.getString(4));
-				dto.setMydate(rs.getDate("MYDATEE"));
+				dto.setMydate(rs.getDate("MYDATE"));
 			}
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -138,12 +141,78 @@ public class MyBoardDao {
 		return res;
 	}
 	
-	public int delete(MyBoardDto dto) {
+	public int delete(int myno) {
 		
 		Connection con = getConnection();
-	
 		
-		return 0;
+		String sql = " DELETE FROM MYBOARD " +
+					" WHERE MYNO = ? ";
+		
+		PreparedStatement pstm = null;
+		int res = 0;
+		
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, myno);
+			System.out.println("3. query 준비 : " + sql);
+			
+			res = pstm.executeUpdate();
+			System.out.println("4. query 실행 및 리턴");;
+			
+			if(res > 0) {
+				commit(con);
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			close(pstm);
+			close(con);
+			System.out.println("5. db 종료");
+		}
+		
+		
+		return res;
+	}
+	
+	public int update(MyBoardDto dto) {
+		
+		Connection con = getConnection();
+		
+		String sql = " UPDATE MYBOARD " +
+					" SET MYTITLE = ?, MYCONTENT = ? " +
+					" WHERE MYNO = ? ";
+		
+		PreparedStatement pstm = null;
+		int res = 0;
+		
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setString(1, dto.getMytitle());
+			pstm.setString(2, dto.getMycontent());
+			pstm.setInt(3, dto.getMyno());
+			System.out.println("3. query 준비 : " + sql);
+			
+			res = pstm.executeUpdate();
+			System.out.println("4. query 실행 및 리턴");;
+			
+			if(res > 0) {
+				commit(con);
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			close(pstm);
+			close(con);
+			System.out.println("5. db 종료");
+		}
+		
+		return res;
 	}
 
 }

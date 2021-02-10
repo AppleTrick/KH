@@ -19,32 +19,32 @@
 	MyBoardDao dao = new MyBoardDao();
 	MyBoardDto dto = dao.selectOne(myno);
 %>
+
 <body>
-	<h1> 상세 글 보기</h1>
-	
-	<table border="1">
-		<tr>
-			<th>작성자</th>
-			<td><%=dto.getMyname() %></td>
-		</tr>
-		<tr>
-			<th>제목</th>
-			<td><%=dto.getMytitle() %></td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td>
-				<textarea rows="10" cols="60"><%=dto.getMycontent() %></textarea>
-				
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" align="right">
-				<input type="button" value="수정" onclick="location.href='./myupdate.jsp?myno=<%=dto.getMyno()%>'">
-				<input type="button" value="삭제" onclick="location.href='./mydelete.jsp?myno=<%=dto.getMyno()%>'">
-				<input type="button" value="목록" onclick="location.href='./mylist.jsp'">
-			</td>
-		</tr>
-	</table>
+
+	<h1>글쓰기</h1>
+	<!-- 글 작성할때 post 인 이유 : queryString 이 허용범위 이상 길어지면 request불가 -->
+	<form action="myupdate_res.jsp?myno=<%=dto.getMyno()%>" method="post">
+		<table border="1">
+			<tr>
+				<th>작성자</th>
+				<td><input type="text" name="myname" value="<%=dto.getMyname() %>" readonly></td>
+			</tr>
+			<tr>
+				<th>제목</th>
+				<td><input type="text" name="mytitle" value="<%=dto.getMytitle() %>"></td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td><textarea rows="10" cols="60" name="mycontent"><%=dto.getMycontent() %></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="submit" value="작성">
+					<input type="button" value="취소" onclick="">
+				</td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>

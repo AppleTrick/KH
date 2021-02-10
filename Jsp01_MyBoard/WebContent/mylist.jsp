@@ -19,6 +19,8 @@
 <body>
 
 <%
+	//객체 선언 밑 내용을 가지고옴
+	
 	MyBoardDao dao = new MyBoardDao();
 	List<MyBoardDto> list = dao.selectList();
 %>
