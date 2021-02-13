@@ -56,6 +56,8 @@
 	
 	</table>
 	
+	<button onclick="location.href='./insert.jsp'">글쓰기</button>
+	
 	
 
 </body>

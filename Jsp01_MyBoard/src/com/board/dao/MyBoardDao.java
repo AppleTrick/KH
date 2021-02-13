@@ -14,7 +14,7 @@ import com.board.dto.MyBoardDto;
 
 public class MyBoardDao {
 
-	// 전체를 출력하는 방법
+	// 전체를 출력
 	public List<MyBoardDto> selectList(){
 		
 		Connection con = getConnection();
@@ -57,6 +57,7 @@ public class MyBoardDao {
 		return list;
 	}
 	
+	// 내용 하나만 출력하는 방법
 	public MyBoardDto selectOne(int no) {
 		Connection con = getConnection();
 		String sql = " SELECT SEQ, WRITER, TITLE, CONTENT, REGDATE " +
@@ -71,9 +72,10 @@ public class MyBoardDao {
 		try {
 			pstm = con.prepareStatement(sql);
 			pstm.setInt(1, no);
+			System.out.println("3. query 를 준비 " + sql);
 			
 			rs = pstm.executeQuery();
-			
+			System.out.println("query를 실행시키고 이에대한 값을 리턴");
 			while(rs.next()) {
 				dto.setNo(rs.getInt(1));
 				dto.setWriter(rs.getString(2));
@@ -92,5 +94,109 @@ public class MyBoardDao {
 				
 		
 		return dto;
+	}
+	public int insert(MyBoardDto dto) {
+		
+		Connection con = getConnection();
+		String sql = " INSERT INTO MYBOARD "+
+					" VALUES(MYBOARDSEQ.NEXTVAL,?,?,?,SYSDATE)";
+		
+		PreparedStatement pstm = null;
+		int res = 0;
+		
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setString(1, dto.getWriter());
+			pstm.setString(2, dto.getTitle());
+			pstm.setString(3, dto.getContent());
+			System.out.println("3. query 를 준비 " + sql);
+			
+			res = pstm.executeUpdate();
+			System.out.println("query를 실행시키고 이에대한 값을 리턴");
+			
+			if(res > 0) {
+				commit(con);
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstm);
+			close(con);
+		}
+		
+		return res;
+		
+	}
+	
+	
+	// 내용 수정
+	public int update(MyBoardDto dto) {
+		
+		Connection con = getConnection();
+		String sql = " UPDATE MYBOARD " + 
+					" SET TITLE = ? , CONTENT = ? " +
+					" WHERE SEQ = ? ";
+		PreparedStatement pstm = null;
+		int res = 0;
+		
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setString(1, dto.getTitle());
+			pstm.setString(2, dto.getContent());
+			pstm.setInt(3, dto.getNo());
+			System.out.println("3. query 를 준비 " + sql);
+			
+			
+			res = pstm.executeUpdate();
+			System.out.println("query를 실행시키고 이에대한 값을 리턴");
+			
+			if (res > 0) {
+				commit(con);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstm);
+			close(con);
+		}
+		
+		return res;
+	}
+	// 내용 삭제
+	public int delete(int no) {
+		
+		Connection con = getConnection();
+		String sql = " DELETE FROM MYBOARD " + 
+					" WHERE SEQ = ? ";
+		
+		
+		PreparedStatement pstm = null;
+		int res = 0;
+		
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, no);
+			System.out.println("3. query 를 준비 " + sql);
+			
+			res = pstm.executeUpdate();
+			System.out.println("query를 실행시키고 이에대한 값을 리턴");
+			
+			if (res > 0) {
+				commit(con);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstm);
+			close(con);
+		}
+		
+		
+		return res;
 	}
 }
