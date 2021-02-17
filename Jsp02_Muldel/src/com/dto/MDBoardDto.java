@@ -1,25 +1,26 @@
-package com.muldel.dto;
+package com.dto;
 
 import java.util.Date;
 
 public class MDBoardDto {
+	
 	private int seq;
 	private String writer;
 	private String title;
 	private String content;
-	private Date regdate;
+	private Date date;
 	
-	public MDBoardDto(int seq, String writer, String title, String content, Date regdate) {
+	public MDBoardDto() {
+		
+	}
+
+	public MDBoardDto(int seq, String writer, String title, String content, Date date) {
 		super();
 		this.seq = seq;
 		this.writer = writer;
 		this.title = title;
 		this.content = content;
-		this.regdate = regdate;
-	}
-	
-	public MDBoardDto() {
-		
+		this.date = date;
 	}
 
 	public int getSeq() {
@@ -54,14 +55,13 @@ public class MDBoardDto {
 		this.content = content;
 	}
 
-	public Date getRegdate() {
-		return regdate;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
+	public void setDate(Date date) {
+		this.date = date;
 	}
-	
 	
 	
 	

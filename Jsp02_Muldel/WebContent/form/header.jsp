@@ -7,20 +7,18 @@
 <title>Insert title here</title>
 <style type="text/css">
 	header {
-		background-color: hotpink;
-		height : 50px
+		height: 100px;
+		background-color: royalblue;
 	}
 	footer {
-		background-color:  hotpink;
-		height : 30px;
-		text-align: center;
-		line-height : 30px;
+		height: 100px;
+		background-color: royalblue;
 	}
 </style>
 </head>
 <body>
 	<header>
-		<a href="./boardlist.jsp">게시판 구현하기</a>
+		<a href="./boardlist.jsp">게시판 구현하기</a>>
 	</header>
 </body>
 </html>

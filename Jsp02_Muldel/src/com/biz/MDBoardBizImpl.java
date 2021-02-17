@@ -1,13 +1,13 @@
-package com.muldel.biz;
+package com.biz;
 
 import java.util.List;
 
-import com.muldel.dao.MDBoardDao;
-import com.muldel.dao.MDBoardDaoImpl;
-import com.muldel.dto.MDBoardDto;
+import com.dao.MDBoardDao;
+import com.dao.MDBoardDaoImpl;
+import com.dto.MDBoardDto;
 
 public class MDBoardBizImpl implements MDBoardBiz {
-
+	
 	MDBoardDao dao = new MDBoardDaoImpl();
 	
 	@Override
@@ -25,19 +25,25 @@ public class MDBoardBizImpl implements MDBoardBiz {
 	@Override
 	public int insert(MDBoardDto dto) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.insert(dto);
 	}
 
 	@Override
 	public int update(MDBoardDto dto) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.update(dto);
+	}
+
+	@Override
+	public int delete(int seq) {
+		// TODO Auto-generated method stub
+		return dao.delete(seq);
 	}
 
 	@Override
 	public int multiDelete(String[] seq) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.multiDelete(seq);
 	}
 
 }

@@ -48,8 +48,6 @@
 			<td><a href="./selectlist.jsp?no=<%=list.get(i).getNo()%>"><%=list.get(i).getTitle() %></a></td>
 			<td><%=list.get(i).getDate() %></td>
 		</tr>
-			
-			
 		<%
 			}
 		%>
@@ -57,8 +55,5 @@
 	</table>
 	
 	<button onclick="location.href='./insert.jsp'">글쓰기</button>
-	
-	
-
 </body>
 </html>

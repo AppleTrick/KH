@@ -5,8 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
-	<footer> kh 정보 교육원 &copy; all rights reserved ...</footer>
+	<footer> 푸터입니다... </footer>
 </body>
 </html>

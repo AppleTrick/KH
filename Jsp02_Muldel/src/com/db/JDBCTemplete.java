@@ -1,4 +1,4 @@
-package com.muldel.db;
+package com.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,20 +7,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
-public class JDBCTemplate {
+public class JDBCTemplete {
 
 	public static Connection getConnection() {
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("1. 드라이버 연결");
+			System.out.println("1. driver 연결");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		// 
 		
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "kh";
@@ -30,15 +27,15 @@ public class JDBCTemplate {
 		
 		try {
 			con = DriverManager.getConnection(url, user, password);
-			con.setAutoCommit(false);
 			System.out.println("2. 계정 연결");
+			con.setAutoCommit(false);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-	
+		
 		return con;
 	}
 	
@@ -50,25 +47,25 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		}
 	}
-	public static void close(Statement stmt) {
+	public static void close(PreparedStatement rs) {
 		try {
-			stmt.close();
+			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	public static void close(PreparedStatement pstm) {
+	public static void close(Statement rs) {
 		try {
-			pstm.close();
+			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	public static void close(Connection con) {
+	public static void close(Connection rs) {
 		try {
-			con.close();
+			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,7 +73,7 @@ public class JDBCTemplate {
 	}
 	public static void commit(Connection con) {
 		try {
-			con.commit();
+			con.commit();;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,4 +87,5 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		}
 	}
+	
 }
