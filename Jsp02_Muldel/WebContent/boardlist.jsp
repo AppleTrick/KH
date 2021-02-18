@@ -16,8 +16,10 @@
 <title>Insert title here</title>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
 
+
+
+<script type="text/javascript">
 	$(function() {
 		$("#muldelform").submit(function(){
 						
@@ -28,13 +30,36 @@
 			}
 		});
 	});
+	
+	$()
+	
+	
+</script>
+<script type="text/javascript">
+
+
+//function allCheck(bool){
+	//var chks = document.getElementsByName("chk");
+	//chks.forEach(element => {
+	//	element.checked = bool;
+	//});
+//}
+
+
+function allCheck(bool){
+    var chks = document.getElementsByName("chk");
+    for(chks in element){
+        element.checked = bool;
+    }
+}
+
 </script>
 </head>
 <body>
-<%
-	MDBoardBiz biz = new MDBoardBizImpl();
-	List<MDBoardDto> list = biz.selectList();
-%>
+	<%
+		MDBoardBiz biz = new MDBoardBizImpl();
+		List<MDBoardDto> list = biz.selectList();
+	%>
 
 	<%@ include file="./form/header.jsp" %>
 	
@@ -49,7 +74,7 @@
 		<col width="100px">
 		
 		<tr>
-			<th><input type="checkbox" name="all" onclick="allchk(this.checked)"></th>
+			<th><input type="checkbox" name="all" onclick="allCheck(this.checked)"/></th>
 			<th>번호</th>
 			<th>작성자</th>
 			<th>제목</th>
