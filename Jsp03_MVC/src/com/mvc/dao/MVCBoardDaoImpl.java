@@ -53,6 +53,10 @@ public class MVCBoardDaoImpl implements MVCBoardDao {
 	@Override
 	public int insert(MVCBoardDto dto) {
 		// TODO Auto-generated method stub
+		
+		Connection con = getConnection();
+		PreparedStatement pstm = null;
+		int res = 0;
 		return 0;
 	}
 
