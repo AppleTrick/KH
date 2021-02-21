@@ -35,7 +35,7 @@
 		<tr>
 			<th><%=dto.getSeq() %></th>
 			<th><%=dto.getWriter() %></th>
-			<th><a href=""><%=dto.getTitle() %></a></th>
+			<th><a href="mycontroller.jsp?command=selectone&seq=<%=dto.getSeq()%>"><%=dto.getTitle() %></a></th>
 			<th><%=dto.getRegdate() %></th>
 		</tr>
 		<%

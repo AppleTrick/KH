@@ -13,7 +13,7 @@ public interface MVCBoardDao {
 						" SET TITLE = ?, CONTENT = ? " +
 						" WHERE SEQ = ? ";
 	String MVC_INSERT= " INSERT INTO MVCBOARD " +
-						" VALUES(MVCBOARDSEQ.NEXTVAL,WRITER,TITLE,CONTENT,SYSDATE " ;
+						" VALUES(MVCBOARDSEQ.NEXTVAL,?,?,?,SYSDATE) " ;
 	String MVC_DELETE= " DELETE FROM MVCBOARD " +
 						" WHERE SEQ = ? ";
 	
