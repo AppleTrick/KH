@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.login.dto.MYMemberDto;
@@ -24,18 +25,115 @@ public class MYMemberDao {
 	
 	//1. 전체 정보
 	public List<MYMemberDto> selectAllUser(){
+		Connection con = getConnection();
+		String sql = " SELECT MYNO, MYID, MYPW, MYNAME, MYADDR, MYPHONE, MYEMAIL, MYENABLED, MYROLE " +
+					" FROM MYMEMBER " +
+					" ORDER BY MYNO DESC ";
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		List<MYMemberDto> list = new ArrayList<MYMemberDto>();
 		
-		return null;
+		try {
+			pstm = con.prepareStatement(sql);
+			System.out.println("3. 쿼리 준비");
+			rs = pstm.executeQuery();
+			System.out.println("4. 쿼리 실행");
+			while(rs.next()) {
+				MYMemberDto dto = new MYMemberDto(
+						rs.getInt("MYNO"),
+						rs.getString("MYID"),
+						rs.getString("MYPW"),
+						rs.getString("MYNAME"),
+						rs.getString("MYADDR"),
+						rs.getString("MYPHONE"),
+						rs.getString("MYEMAIL"),
+						rs.getString("MYENABLED"),
+						rs.getString("MYROLE"));
+				
+				list.add(dto);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs, pstm, con);
+		}
+		
+		
+		return list;
 	}	
 	//2. 전체 정보 (탈퇴 안한)
 	public List<MYMemberDto> selectEnabledUser(){
+		Connection con = getConnection();
+		String sql = " SELECT MYNO, MYID, MYPW, MYNAME, MYADDR, MYPHONE, MYEMAIL, MYENABLED, MYROLE " +
+					" FROM MYMEMBER " +
+					" WHERE MYENABLED = 'Y' ";
 		
-		return null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		List<MYMemberDto> list = new ArrayList<MYMemberDto>();
+		
+		try {
+			pstm = con.prepareStatement(sql);
+			System.out.println("3. 쿼리 준비");
+			rs = pstm.executeQuery();
+			System.out.println("4. 쿼리 실행");
+			while(rs.next()) {
+				MYMemberDto dto = new MYMemberDto(
+						rs.getInt("MYNO"),
+						rs.getString("MYID"),
+						rs.getString("MYPW"),
+						rs.getString("MYNAME"),
+						rs.getString("MYADDR"),
+						rs.getString("MYPHONE"),
+						rs.getString("MYEMAIL"),
+						rs.getString("MYENABLED"),
+						rs.getString("MYROLE"));
+				
+				list.add(dto);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs, pstm, con);
+		}
+		
+		
+		return list;
 	}
 	//3. 회원 등급 조정
 	public int updateRole(int myno, String myrole) {
 		
-		return 0;
+		Connection con = getConnection();
+		String sql = " UPDATE MYMEMBER " +
+					" SET MYROLE = ? " +
+					" WHERE MYNO = ? ";
+		PreparedStatement pstm = null;
+		
+		int res = 0;
+		
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setString(1, myrole);
+			pstm.setInt(2, myno);;
+			
+			res = pstm.executeUpdate();
+			
+			if(res>0) {
+				con.commit();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstm, con);
+		}
+		
+	
+		return res;
 	}
 	
 	
@@ -67,9 +165,9 @@ public class MYMemberDao {
 			pstm = con.prepareStatement(sql);
 			pstm.setString(1, myid);
 			pstm.setString(2, mypw);
-			
+			System.out.println("3. 쿼리 준비");
 			rs = pstm.executeQuery();
-			
+			System.out.println("4. 쿼리 실행");
 			while(rs.next()){
 				dto = new MYMemberDto();
 				dto.setMyno(rs.getInt(1));
@@ -89,10 +187,6 @@ public class MYMemberDao {
 			close(rs, pstm, con);
 		}
 		
-		
-		
-		
-		
 		return dto;
 	}
 	//2. 중복체크
@@ -107,7 +201,42 @@ public class MYMemberDao {
 	}
 	//4. 정보조회
 	public MYMemberDto selectUser(int myno) {
-		return null;
+		
+		Connection con = getConnection();
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		
+		String sql = " SELECT MYNO, MYID, MYPW, MYNAME, MYADDR, MYPHONE, MYEMAIL, MYENABLED, MYROLE "
+				+" FROM MYMEMBER "
+				+" WHERE MYNO = ? ";
+		
+		MYMemberDto dto = null;
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, myno);
+			System.out.println("3. 쿼리 준비");
+			rs = pstm.executeQuery();
+			System.out.println("4. 쿼리 실행");
+			while(rs.next()) {
+				dto = new MYMemberDto(
+						rs.getInt("MYNO"),
+						rs.getString("MYID"),
+						rs.getString("MYPW"),
+						rs.getString("MYNAME"),
+						rs.getString("MYADDR"),
+						rs.getString("MYPHONE"),
+						rs.getString("MYEMAIL"),
+						rs.getString("MYENABLED"),
+						rs.getString("MYROLE"));		
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs, pstm, con);
+		}
+		
+		return dto;
 	}
 	
 	//5. 정보수정

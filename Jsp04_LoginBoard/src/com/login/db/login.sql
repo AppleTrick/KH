@@ -29,8 +29,8 @@ CREATE TABLE MYMEMBER(
 );
 
 INSERT INTO MYMEMBER
-VALUES(MYMEMBERSEQ.NEXTVAL, 'admin' , 'admin1234' , '이동헌' , '경기도 수원시', '010-0000-0000',
-							'admin@admin.com','Y','ADMIN');
+VALUES(MYMEMBERSEQ.NEXTVAL, 'admin1123' , '123224' , '이동헌' , '경기도 수원시', '010-1023-0000',
+							'admdi22n@admin.com','Y','USER');
 							
 							
 SELECT MYNO, MYID, MYPW, MYNAME, MYADDR, MYPHONE, MYEMAIL, MYENABLED, MYROLE

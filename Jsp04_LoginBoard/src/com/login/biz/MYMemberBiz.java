@@ -22,17 +22,17 @@ public class MYMemberBiz {
 	}
 	//1. 전체 정보
 	public List<MYMemberDto> selectAllUser(){
-		return null;
+		return dao.selectAllUser();
 	}	
 	//2. 전체 정보 (탈퇴 안한)
 	public List<MYMemberDto> selectEnabledUser(){
 		
-		return null;
+		return dao.selectEnabledUser();
 	}
 	//3. 회원 등급 조정
 	public int updateRole(int myno, String myrole) {
 		
-		return 0;
+		return dao.updateRole(myno, myrole);
 	}
 	
 	
@@ -52,25 +52,25 @@ public class MYMemberBiz {
 	//2. 중복체크
 	public MYMemberDto idCheck(String myid) {
 		
-		return null;
+		return dao.idCheck(myid);
 	}
 	
 	//3. 회원가입
 	public int insertUser(MYMemberDto dto) {
-		return 0;
+		return dao.insertUser(dto);
 	}
 	//4. 정보조회
 	public MYMemberDto selectUser(int myno) {
-		return null;
+		return dao.selectUser(myno);
 	}
 	
 	//5. 정보수정
 	public int updateUser(MYMemberDto dto) {
 		
-		return 0;
+		return dao.updateUser(dto);
 	}
 	
 	public int deleteUser(int myno) {
-		return 0;
+		return dao.deleteUser(myno);
 	}
 }
