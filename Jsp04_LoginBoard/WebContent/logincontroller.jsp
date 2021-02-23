@@ -98,7 +98,21 @@
 			</script>
 		<%
 		}
+	} else if(command.equals("registform")){
+		response.sendRedirect("regist.jsp");
+	} else if(command.equals("idchk")){
+		String myid = request.getParameter("myid");
+		MYMemberDto dto = biz.idCheck(myid);
+		
+		boolean idnotused = true;
+		
+		if(dto.getMyid() != null){
+			idnotused = false;
+		}
+		
+		response.sendRedirect("idchk.jsp?idnotused="+idnotused);
 	}
+		
 		
 %>
 

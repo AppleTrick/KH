@@ -191,8 +191,42 @@ public class MYMemberDao {
 	}
 	//2. 중복체크
 	public MYMemberDto idCheck(String myid) {
+		Connection con = getConnection();
+		String sql = " SELECT MYNO, MYID, MYPW, MYNAME, MYADDR, MYPHONE, MYEMAIL, MYENABLED, MYROLE "+
+					" FROM MYMEMBER " +
+					" WHERE MYID = ? ";
 		
-		return null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		// 무조건 null 이 아니여야한다. logincontroller 에 널이 아니면을 정의했기 때문에
+		MYMemberDto dto = new MYMemberDto();
+		
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setString(1, myid);
+			
+			rs = pstm.executeQuery();
+			
+			while(rs.next()) {
+				dto = new MYMemberDto(
+						rs.getInt("MYNO"),
+						rs.getString("MYID"),
+						rs.getString("MYPW"),
+						rs.getString("MYNAME"),
+						rs.getString("MYADDR"),
+						rs.getString("MYPHONE"),
+						rs.getString("MYEMAIL"),
+						rs.getString("MYENABLED"),
+						rs.getString("MYROLE"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs, pstm, con);
+		}
+				
+		return dto;
 	}
 	
 	//3. 회원가입
