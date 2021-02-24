@@ -25,11 +25,13 @@
 	applicationId : <%=application.getAttribute("applicationId") %>"<br>
 	
 	<a href="result.jsp">result</a>
+	
+	<a href="scope.do?mytest=1">test</a>
 	<form action="scope.do" method="post">
 		<input type="hidden" name="myRequest" value="my request value 2">
 		<input type="submit" value="controller">
 	</form>
 
-	
+	<% pageContext.forward("scope.do"); %>
 </body>
 </html>
