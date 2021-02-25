@@ -35,7 +35,7 @@
 		<tr>
 			<th><%=dto.getSeq() %></th>
 			<th><%=dto.getWriter() %></th>
-			<th><a href="mycontroller.jsp?command=selectone&seq=<%=dto.getSeq()%>"><%=dto.getTitle() %></a></th>
+			<th><a href="myservlet.do?command=selectone&seq=<%=dto.getSeq()%>"><%=dto.getTitle() %></a></th>
 			<th><%=dto.getRegdate() %></th>
 		</tr>
 		<%
@@ -44,7 +44,7 @@
 		
 		<tr>
 			<td colspan="4" align="right">
-				<input type="button" value="글작성" onclick="location.href='mycontroller.jsp?command=insertform'">
+				<input type="button" value="글작성" onclick="location.href='myservlet.do?command=insertform'">
 			</td>
 		</tr>
 	</table>

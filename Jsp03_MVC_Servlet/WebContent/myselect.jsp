@@ -12,7 +12,7 @@
 <script type="text/javascript">
 	function deleteProc(seq) {
 		if (confirm(seq + "번 글을 삭제하시겠습니까?")) {
-			location.href="mycontroller.jsp?command=delete&seq="+seq;
+			location.href="myservlet.do?command=delete&seq="+seq;
 		}
 	}
 </script>
@@ -39,9 +39,9 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="button" value="수정" onclick="location.href='mycontroller.jsp?command=updateform&seq=<%=dto.getSeq() %>'">
+				<input type="button" value="수정" onclick="location.href='myservlet.do?command=updateform&seq=<%=dto.getSeq() %>'">
 				<input type="button" value="삭제" onclick="deleteProc(<%=dto.getSeq()%>);">
-				<input type="button" value="목록" onclick="location.href='mycontroller.jsp?command=list'">
+				<input type="button" value="목록" onclick="location.href='myservlet.do?command=list'">
 			</td>
 		</tr>
 		

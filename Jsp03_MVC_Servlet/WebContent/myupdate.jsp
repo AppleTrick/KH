@@ -19,7 +19,7 @@
 
 	<h1>UPDATE</h1>
 	
-	<form action="mycontroller.jsp" method="post">
+	<form action="myservlet.do" method="post">
 		<input type="hidden" name="command" value="updateres" >
 		<input type="hidden" name="seq" value="<%= dto.getSeq() %>"> 
 		<table border="1">

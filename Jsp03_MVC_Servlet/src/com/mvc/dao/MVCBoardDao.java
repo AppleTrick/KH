@@ -5,7 +5,8 @@ import com.mvc.dto.MVCBoardDto;
 
 public interface MVCBoardDao {
 	String MVC_SELECT_LIST = "SELECT SEQ, WRITER, TITLE, CONTENT, REGDATE " +
-							" FROM MVCBOARD ";
+							" FROM MVCBOARD " + 
+							" ORDER BY SEQ DESC ";
 	String MVC_SELECT_ONE= " SELECT SEQ, WRITER, TITLE, CONTENT, REGDATE " +
 							" FROM MVCBOARD " +
 							" WHERE SEQ = ? ";

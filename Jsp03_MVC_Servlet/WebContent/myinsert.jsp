@@ -12,7 +12,7 @@
 <body>
 	<h1> Insert </h1>
 	
-	<form action="mycontroller.jsp" method="post">
+	<form action="myservlet.do" method="post">
 		<input type="hidden" name="command" value="insertres">
 		<table border="1">
 		<tr>
