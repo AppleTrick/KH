@@ -11,6 +11,6 @@
 </head>
 <body>
 	<!-- 바로 위임 시켜준다. -->
-	<jsp:forward page="mvc.do?command=list"></jsp:forward>
+	<jsp:forward page="mycontroller.do?command=list"></jsp:forward>
 </body>
 </html>

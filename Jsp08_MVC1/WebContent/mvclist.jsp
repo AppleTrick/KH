@@ -37,7 +37,7 @@
 					<tr>
 						<td>${dto.seq }</td>
 						<td>${dto.writer }</td>
-						<td><a href="">${dto.title }</a></td>
+						<td><a href="mycontroller.do?command=selectone&seq=${dto.seq }"> ${dto.title }</a></td>
 						<td>${dto.regdate }</td>
 					</tr>
 				</c:forEach>
@@ -45,7 +45,7 @@
 		</c:choose>
 		<tr>
 			<td colspan="4" align="right">
-				<input type="button" value="글작성" onclick="">
+				<input type="button" value="글작성" onclick="location.href='mycontroller.do?command=insert'">
 			</td>
 		</tr>
 	</table>

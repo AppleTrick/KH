@@ -14,10 +14,7 @@
 </head>
 <body>
 	<h1> JSTL : Jsp Standard Tag Library</h1>
-	
-	
-	
-	
+
 	<table border="1">
 		<tr>
 			<th>이름</th>
