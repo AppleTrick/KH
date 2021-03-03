@@ -4,9 +4,7 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text.html; charset=UTF-8"); %>
 
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +12,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Answer List</h1>
+		
+		
+	<h1>LIST</h1>
 	
 	<table border="1">
 	
@@ -39,10 +39,17 @@
 				<tr>
 					<td>${dto.boardno }</td>
 					<td>
-						<c:forEach begin="1" end="${dto.titletab }">
-							&nbsp;
-						</c:forEach>
-						<a href="answer.do?command=detail&boardno=${dto.boardno }">${dto.title }</a>
+						<c:choose>
+							<c:when test="${dto.deflag eq 'Y' }">
+								<c:out value="---------------삭제된 글입니다 -------------"></c:out>
+							</c:when>
+							<c:otherwise>
+								<c:forEach begin="1" end="${dto.titletab }">
+									&nbsp;
+								</c:forEach>
+								<a href="answer.do?command=detail&boardno=${dto.boardno }">${dto.title }</a>
+							</c:otherwise>
+						</c:choose>					
 					</td>
 					<td>${dto.writer }</td>
 					<td>${dto.regdate }</td>
@@ -50,7 +57,11 @@
 			</c:forEach>
 		</c:otherwise>
 		</c:choose>
-		
+		<tr>
+			<td colspan="4" align="right">
+				<input type="button" value="글작성" onclick="">
+			</td>
+		</tr>
 	</table>
 </body>
 </html>

@@ -19,7 +19,7 @@ public class AnswerBizImpl implements AnswerBiz {
 	@Override
 	public AnswerDto selectOne(int boardno) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.selectOne(boardno);
 	}
 
 	@Override
@@ -43,7 +43,11 @@ public class AnswerBizImpl implements AnswerBiz {
 	@Override
 	public int answerProc(AnswerDto dto) {
 		// TODO Auto-generated method stub
-		return 0;
+		
+		
+		int update = dao.answerUpdate(dto.getBoardno());
+		int insert = dao.answerInsert(dto);
+		return update + insert;
 	}
 
 }
