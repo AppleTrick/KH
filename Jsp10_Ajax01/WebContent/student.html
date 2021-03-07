@@ -18,12 +18,18 @@
 	$(function(){
 		$("#process").click(function() {
 			var queryString = getParameterValues();
-			//alert(queryString)
+			//alert(queryString);
 			
 			$.ajax({
-				url : "score.do"+queryString,
-				dataType : "json",
+				url : "score.do"+queryString, // score.do?name=?kor=?&eng=?&math=?
+				dataType : "json",				// 통신 성공시 return 받는 dataType 이 json 파일이다.
+				//data :  							값을 보낼때의 형식
 				success : function(msg){
+					//  msg -> {"name" : name , "sum" : sum , "math" : math }
+					// controller 에서 json 형태의 객체로 보냈다.
+					// ajax에서 json을 문자열 객체로 가지고 왔다.
+					// 이러한 형태를 파싱이라함
+					$("#result").html(decodeURIComponent(msg.name) + " 의 총점 : " + msg.sum + "\n평균 : " + msg.avg);
 					
 				},
 				error : function(){

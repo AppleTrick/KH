@@ -3,10 +3,15 @@
   <display-name>Jsp10_Ajax01</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <servlet>
+  	<servlet-name>score</servlet-name>
+  	<servlet-class>com.ajax.controller.ScoreController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>score</servlet-name>
+  	<url-pattern>/score.do</url-pattern>
+  </servlet-mapping>
 </web-app>
