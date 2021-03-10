@@ -54,7 +54,10 @@ public class BikeController extends HttpServlet {
 			
 			String data = request.getParameter("mydata");
 			
-			JsonElement element = JsonParser.parseString(data); //json형태의 문자열을 json 객체로 변환
+			// JSON의 모든 요소 값들을 포함한 것을 JsonElement라고 칭할 수 있다.
+			// JsonElement : JsonObject, JsonArray, JsonPrimitive, JsonNull
+			JsonElement element = JsonParser.parseString(data); 
+			// JsonObject : ket - value {("String" : JsonElement} 형식 )
 			JsonObject jsonData = element.getAsJsonObject();
 			
 			JsonElement records = jsonData.get("records");

@@ -8,7 +8,13 @@ $(function() {
 					url : url + "?code=" + code,
 					dataType : "text",
 					success : function(data) {
+						
+						console.log("data 의 값 : " + data);
+						
 						var temp = $.trim(data);
+						
+						console.log("temp 의 값 : " + temp);
+						
 						var obj = JSON.parse(temp);
 						
 						$("#pubDate").val(obj.pubDate);
