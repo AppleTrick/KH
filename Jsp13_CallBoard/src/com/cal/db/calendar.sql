@@ -19,7 +19,12 @@ FROM CALBOARD;
 -- row number() over(partiton by @ order by)
 -- @로 group by 를 해서, 그룹별 rownum을 사용하고 싶을 때
 
-SELECT *
+-- row_number() 순위를 매김
+
+-- PARTITION BY SUBSTR(MDATE, 1, 8) 컬럼을 기준으로 그룹생성
+-- 그룹에서 MDATE 기준으로 내림차순ORDER BY MDATE 이 기준대로
+
+SELECT * 
 FROM
 	(
 	SELECT (ROW_NUMBER() OVER(PARTITION BY SUBSTR(MDATE, 1, 8) ORDER BY MDATE))RN, SEQ, ID, TITLE, CONTENT, MDATE, REGDATE
@@ -28,4 +33,9 @@ FROM
 	AND SUBSTR(MDATE,1,6) = '202103'
 	)
 WHERE RN BETWEEN 1 AND 3;
+
+SELECT COUNT(*)
+FROM CALBOARD
+WHERE ID = 'kh'
+AND SUBSTR(MDATE,1,8) ='20210311'
 	

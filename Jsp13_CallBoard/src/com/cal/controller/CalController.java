@@ -33,6 +33,8 @@ public class CalController extends HttpServlet {
 		try {
 			if (command.equals("calendar")) {
 				response.sendRedirect("calendar.jsp");
+				
+				// 추가하는 부분 가지고 오고
 			} else if(command.equals("insert")) {
 				String year = request.getParameter("year");
 				String month = request.getParameter("month");

@@ -15,6 +15,7 @@
 </head>
 <body>
 	<jsp:useBean id="util" class="com.cal.common.Util"></jsp:useBean>
+	<!-- 클래스를 가지고온다. -->
 
 	<h1>일정 목록</h1>
 	
@@ -45,11 +46,15 @@
 							<!-- <td>${dto.mdate }</td> -->
 							<td>
 								<jsp:setProperty property="todates" name="util" value="${dto.mdate }"/>
+								<!-- dto.mdate 형태를  yyyy년MM월dd일HH시mm분 으로 바꾸기 위해 값을 넣어줌 setTodates() -->
 								<jsp:getProperty property="todates" name="util"/>
+								<!-- dto.mdate 형태를  yyyy년MM월dd일HH시mm분 형식으로 나오게 됨 getTodates()-->
 							</td>
 							<!-- <td>${dto.regdate }</td>  -->
 							<td>
+								<!--   포맷변경 -->
 								<fmt:formatDate value="${dto.regdate }" pattern="yyyy:MM:dd"/>
+								<!-- 날짜 정보를 담고 있는 객체를 포맷팅하여 출력할 때 사용하는 태그 -->
 							</td>
 						</tr>
 					</c:forEach>
