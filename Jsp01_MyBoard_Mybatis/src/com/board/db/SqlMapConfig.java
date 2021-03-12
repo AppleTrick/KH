@@ -16,13 +16,19 @@ public class SqlMapConfig {
 		
 		// 경로 일때 는 / 로 해준다.
 		String resource = "com/board/db/mybatis-config.xml";
-		//String resource = "org/mybatis/example/mybatis-config.xml";
+		
+		//1. config.xml 을 가지고 와서
+
 	
 		try {
 			InputStream inputStream = Resources.getResourceAsStream(resource);
-			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+			// 2. config.xml 을 읽는다.
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+			// 3. SqlSessionFactoryBuilder로 객체를 생성
+			// 4. sqlSessionFactory 객체 생성
 			
 			inputStream.close();
+			// 원래는 파이널에서 닫아야하는데 지금 닫는다.
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
