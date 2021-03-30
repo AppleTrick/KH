@@ -73,7 +73,7 @@ public class JDBCTemplete {
 	}
 	public static void commit(Connection con) {
 		try {
-			con.commit();;
+			con.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
